@@ -111,8 +111,8 @@ outer:
 			if !strings.Contains(lowerTitle, term) && !strings.Contains(lowerTranscript, term) {
 				continue outer
 			}
-			retItems = append(retItems, xkcdItem)
 		}
+		retItems = append(retItems, xkcdItem)
 	}
 
 	return retItems
