@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>File Upload Index Page</title>
+    </head>
+    <body>
+        <section class="section">
+          <div class="container">
+            <h3 class="title">
+                <div class="box">
+                    File Upload Page
+                </div>
+            </h3>
+        </section>
+        <section class="section">
+            <form class="box" action="/upload" enctype="multipart/form-data" method="post">
+
+              <div class="file is-info has-name">
+                <label class="file-label">
+                  <input class="file-input" type="file" name="aFile">
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Open a file to upload
+                    </span>
+                  </span>
+                  <span class="file-name">
+                    Choose any File Under 25 MB
+                  </span>
+                </label>
+              </div>
+
+            <br/>   
+              <div>
+                <button class="button is-primary" type="submit">Upload</button>
+              </div>
+              </form>
+        </section>
+    </body>
+</html>
