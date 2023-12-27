@@ -7,6 +7,7 @@ import (
 	"math"
 	"mime"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -109,6 +110,8 @@ func downloadHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fileName, _ = url.QueryUnescape(fileName)
+
 	file, err := os.Open(fmt.Sprintf("%s/%s", UPLOAD_DIR, fileName))
 	if err != nil {
 		fmt.Fprintln(w, "Failed to open file ", err)
@@ -136,5 +139,5 @@ func main() {
 	http.HandleFunc("/upload", uploadHandler)
 	http.HandleFunc("/downloads/", downloadHandler)
 	http.HandleFunc("/", indexHandler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8200", nil)
 }
