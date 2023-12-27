@@ -52,6 +52,8 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 
 	defer file.Close()
 
+	defer r.Body.Close()
+
 	fmt.Printf("File Name Uploaded is %s of size %d \n", header.Filename, header.Size)
 
 	dst, err := os.Create(fmt.Sprintf("%s/%s", UPLOAD_DIR, header.Filename))
