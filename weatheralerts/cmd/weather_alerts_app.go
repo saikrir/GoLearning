@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"weatheralerts/pkg/appLogger"
+	"weatheralerts/pkg/weatherAlertsSvc"
 	"weatheralerts/pkg/weatherClient"
 )
 
@@ -27,5 +28,10 @@ func LaunchApp() {
 		appLogger.Fatal(err.Error())
 	}
 
-	fmt.Println(weatherResponse.GroupByDay()["2024-04-02"])
+	weatherAlertsSvcClient := weatherAlertsSvc.NewWeatherAlertsSvc(weatherResponse)
+
+	windAlert := weatherAlertsSvcClient.GatherWindAlerts()
+	if windAlert != nil {
+		fmt.Println(*windAlert)
+	}
 }

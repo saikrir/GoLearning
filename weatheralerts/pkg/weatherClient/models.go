@@ -18,7 +18,8 @@ type WeatherEntry struct {
 		Humidity   int32   `json:"humidity"`
 	} `json:"main"`
 
-	Weather []struct {
+	WeatherPredications []struct {
+		Id          int32  `json:"id"`
 		Main        string `json:"main"`
 		Description string `json:"description"`
 	} `json:"weather"`
