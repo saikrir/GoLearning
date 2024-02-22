@@ -1,0 +1,49 @@
+- Preemptive scheduling means that non deterministic, meaning which thread is chosen is based on OS
+- Coopertaing schedulers means, the concurrency primitives are cooperating and willing to giveup control when asked.
+- Threads have 1 meg of stack space
+
+
+Thread can be in following states
+	-> Runnable
+	-> Executing (Running)
+	-> Waiting (disk I/O or Network I/O)
+
+
+Generally keep 3 Threads per core
+
+Thread queues are use to schedule Threads by OS
+
+Processor can run in one of two modes
+ 
+ - kernal mode: It has unrestricted access to execute (like Device Drivers)
+ - user more: There are checks and balances on Code Execution
+
+---------------------------------------------------------------------------
+
+Go Routines
+
+-> Go Routines get 
+
+         - Logical Processor(P) and a Thread(M - Machine or OS Thread)  associated with it
+	 - Each Logical processor has a LRQ and GRQ
+	 - Number of Logical Processors are equal to number of cores
+	 - Go scheduler run in user mode
+	 - Go Scheduler is a cooperating scheduler but acts like preemtive.
+	 - Go scheduler works through events
+		- Go keyword
+		- GC
+		- System Call
+		- Blocking calls
+	 - Go scheduler works smartly by using "Network Poller" which asynchronously executes I/O calls or OS System calls, freeing up logical Processor
+	 - Go scheduler is a work stealing scheduler
+
+	 - Use Atomic variables for counters, they only have access to 4 or 8 bytes of memory
+	 - When you use Mutex, then stuct should not be copied
+	 - Function that calls Mutex.lock() should also call Mutex.Unlock()
+	 - Go can only lock and unlock once. 
+	 - RWLock is used to allow readlock and writelocks to operate, when write lock is on, readLocks will block Go Routines
+	 - maps are not thread safe in GO
+	 - if you want delivery gaurantee use unbuffered channel
+	 - if you dont want delivery gaurantee use buffered channel
+	 - unbuffered channels have recieve first followed by produce
+	 - buffered channels have send first followed by receieve
